@@ -3,7 +3,7 @@ const foodSound = new Audio('music/food.mp3');
 const gameOverSound = new Audio('music/gameover.mp3');
 const moveSound = new Audio('music/move.mp3');
 const musicSound = new Audio('music/music.mp3');
-let speed = 19;
+let speed = 15;
 let score = 0;
 let lastPaintTime = 0;
 let snakeArr = [
@@ -49,10 +49,10 @@ function gameEngine(){
     if(snakeArr[0].y === food.y && snakeArr[0].x ===food.x){
         foodSound.play();
         score += 1;
-        if(score>hiscoreval){
-            hiscoreval = score;
-            localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
-            hiscoreBox.innerHTML = "HiScore: " + hiscoreval;
+        if(score>highscoreval){
+            highscoreval = score;
+            localStorage.setItem("highscore", JSON.stringify(highscoreval));
+            highscoreBox.innerHTML = "HighScore: " + highscoreval;
         }
         scoreBox.innerHTML = "Score: " + score;
         snakeArr.unshift({x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y});
@@ -94,14 +94,14 @@ function gameEngine(){
 
 
 musicSound.play();
-let hiscore = localStorage.getItem("hiscore");
-if(hiscore === null){
-    hiscoreval = 0;
-    localStorage.setItem("hiscore", JSON.stringify(hiscoreval))
+let highscore = localStorage.getItem("highscore");
+if(highscore === null){
+    highscoreval = 0;
+    localStorage.setItem("highscore", JSON.stringify(highscoreval))
 }
 else{
-    hiscoreval = JSON.parse(hiscore);
-    hiscoreBox.innerHTML = "HiScore: " + hiscore;
+    highscoreval = JSON.parse(highscore);
+    highscoreBox.innerHTML = "HighScore: " + highscore;
 }
 
 window.requestAnimationFrame(main);
