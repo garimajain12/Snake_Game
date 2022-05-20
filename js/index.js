@@ -14,7 +14,7 @@ food = {x: 6, y: 7};
 
 function main(ctime) {
     window.requestAnimationFrame(main);
-    if((ctime - lastPaintTime)/1000 < 1/speed){
+    if((ctime-lastPaintTime)/1000 < 1/speed){
         return;
     }
     lastPaintTime = ctime;
@@ -61,13 +61,12 @@ function gameEngine(){
         food = {x: Math.round(a + (b-a)* Math.random()), y: Math.round(a + (b-a)* Math.random())}
     }
 
-    for (let i = snakeArr.length - 2; i>=0; i--) { 
+    for (let i = snakeArr.length-2; i>=0; i--) { 
         snakeArr[i+1] = {...snakeArr[i]};
     }
 
     snakeArr[0].x += inputDir.x;
     snakeArr[0].y += inputDir.y;
-
     
     board.innerHTML = "";
     snakeArr.forEach((e, index)=>{
@@ -88,10 +87,7 @@ function gameEngine(){
     foodElement.style.gridColumnStart = food.x;
     foodElement.classList.add('food')
     board.appendChild(foodElement);
-
-
 }
-
 
 musicSound.play();
 let highscore = localStorage.getItem("highscore");
@@ -106,7 +102,7 @@ else{
 
 window.requestAnimationFrame(main);
 window.addEventListener('keydown', e =>{
-    inputDir = {x: 0, y: 1} // Start the game
+    inputDir = {x: 0, y: 1} 
     moveSound.play();
     switch (e.key) {
         case "ArrowUp":
